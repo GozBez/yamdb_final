@@ -89,7 +89,7 @@ class UserViewSet(mixins.ListModelMixin,
         url_name='get_user'
     )
     def get_user_by_username(self, request, username):
-        """Обеспечивает получание данных пользователя по его username и
+        """Обеспечивает получение данных пользователя по его username и
         управление ими."""
         user = get_object_or_404(User, username=username)
         if request.method == 'PATCH':
@@ -97,7 +97,7 @@ class UserViewSet(mixins.ListModelMixin,
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
-        elif request.method == 'DELETE':
+        else:
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         serializer = UserSerializer(user)

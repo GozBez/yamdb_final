@@ -9,17 +9,15 @@ class CategoryTitleSerializer(serializers.Field):
 
     def check_category(self, data):
         try:
-            obj = Category.objects.get(slug=data)
+            return Category.objects.get(slug=data)
         except Exception:
             raise serializers.ValidationError(f'Категория {data} не найдена')
-        return obj
 
     def representation(self, value):
-        category = {
+        return {
             "name": value.name,
             "slug": value.slug
         }
-        return category
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
