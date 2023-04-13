@@ -86,7 +86,7 @@ class Meta:
     ]
 
 
-def __repr__(self):
+def __str__(self):
     return self.text
 
 

@@ -97,7 +97,7 @@ class UserViewSet(mixins.ListModelMixin,
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
+        elif request.method == 'DELETE':
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         serializer = UserSerializer(user)
