@@ -1,7 +1,6 @@
 from csv import DictReader
 
 from django.core.management import BaseCommand
-
 from reviews.models import User
 
 

@@ -1,26 +1,26 @@
-from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.tokens import default_token_generator
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
-from rest_framework import filters, mixins, viewsets, status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, mixins, status, viewsets
 from rest_framework.decorators import action
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import (AllowAny, IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.permissions import (AllowAny,
-                                        IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
-
-from reviews.models import Category, Genre, Title, Review, Comment
+from reviews.models import Category, Comment, Genre, Review, Title
 from users.models import User
+
 from .filters import TitleFilter
 from .mixins import CreateListDestroyViewSet
-from .permissions import (IsSuperUserOrIsAdminOnly, AdminOrReadOnly,
-                          IsAuthorOrModerPermission)
-from .serializers import (CategoriesSerializer, TitlesGettingSerializers,
-                          GenresSerializer, TitlesSerializer,
+from .permissions import (AdminOrReadOnly, IsAuthorOrModerPermission,
+                          IsSuperUserOrIsAdminOnly)
+from .serializers import (CategoriesSerializer, CommentSerializer,
+                          GenresSerializer, ReviewSerializer,
+                          TitlesGettingSerializers, TitlesSerializer,
                           UserCreateSerializer, UserRecieveTokenSerializer,
-                          UserSerializer, ReviewSerializer, CommentSerializer)
+                          UserSerializer)
 from .utils import send_confirmation_code
 
 

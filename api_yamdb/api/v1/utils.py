@@ -1,8 +1,8 @@
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
+from reviews.models import Review, Title
 
 from api_yamdb.settings import EMAIL_YAMDB
-from reviews.models import Review, Title
 
 
 def send_confirmation_code(email, confirmation_code):
