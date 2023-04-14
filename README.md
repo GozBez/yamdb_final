@@ -121,3 +121,5 @@ python manage.py runserver
 #### Автор
 
 Dmitry Golubev
+
+[![Django-app workflow](https://github.com/GozBez/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)](https://github.com/GozBez/yamdb_final/actions/workflows/yamdb_workflow.yml)
