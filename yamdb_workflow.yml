@@ -73,8 +73,8 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          - name: Docker start and env
-          run: |
+      - name: Docker start and env
+        run: |
             sudo docker-compose stop
             sudo docker-compose rm web
             sudo docker-compose rm db
