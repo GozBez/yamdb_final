@@ -13,7 +13,7 @@ services:
     env_file:
       - ./.env
   web:
-    image: gozbez/api_yamdb:latest
+    image: gozbez/api_yamdb:v1
     restart: always
     volumes:
       - static_value:/app/static/
