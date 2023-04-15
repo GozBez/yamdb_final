@@ -74,7 +74,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           - name: Docker start and env
-          script: |
+          run: |
             sudo docker-compose stop
             sudo docker-compose rm web
             sudo docker-compose rm db
@@ -89,10 +89,10 @@ jobs:
             echo DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }} >> .env
             echo DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }} >> .env
             sudo docker-compose up -d --build
-            sudo docker-compose exec web python manage.py makemigrations
-            sudo docker-compose exec web python manage.py migrate
-            sudo docker-compose exec web python manage.py createsuperuser
-            sudo docker-compose exec web python manage.py collectstatic --no-input
+            sudo docker-compose exec -T web python manage.py makemigrations
+            sudo docker-compose exec -T web python manage.py migrate
+            sudo docker-compose exec -T web python manage.py createsuperuser --noinput
+            sudo docker-compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
