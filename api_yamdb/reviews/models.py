@@ -74,20 +74,18 @@ class Review(models.Model):
     )
     pub_date = models.DateTimeField(auto_now_add=True, db_index=True)
 
+    class Meta:
+        ordering = ('pub_date',)
+        verbose_name = 'Отзыв'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['author', 'title'],
+                name='unique_author_review'
+            )
+        ]
 
-class Meta:
-    ordering = ('pub_date',)
-    verbose_name = 'Отзыв'
-    constraints = [
-        models.UniqueConstraint(
-            fields=['author', 'title'],
-            name='unique_author_review'
-        )
-    ]
-
-
-def __str__(self):
-    return self.text
+    def __str__(self):
+        return self.text[:16]
 
 
 class Comment(models.Model):

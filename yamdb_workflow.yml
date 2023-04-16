@@ -14,19 +14,13 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        # Здесь можно указать несколько версий
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-    # Запуск actions checkout — готового скрипта
-    # для клонирования репозитория
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
-      # Запуск actions setup-python — готового скрипта
-      # для развёртывания окружения Python
       uses: actions/setup-python@v2
       with:
-        # Выбор версии Python
         python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
